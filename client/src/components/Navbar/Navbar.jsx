@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 // import logo from 'https://stackoverflow.design/assets/img/logos/so/logo-stackoverflow.png'
-import logo from '../../assets/try.png'
+import logo from '../../assets/logo-stackoverflow.svg'
 import search from '../../assets/search.svg'
 
 import './Navbar.css'
@@ -25,7 +25,7 @@ const Navbar = () => {
       <div className="navbar">
 
         <Link to='/' className='nav-item nav-logo'>
-          <img src={ logo } alt="logo" style={{ width: '150px'}}  />
+          <img src={ logo } alt="logo" style={{width:'150px'}}  />
         </Link>
         <Link to='/' className='nav-item nav-btn' >About</Link>
         <Link to='/' className='nav-item nav-btn' >Products</Link>
@@ -33,7 +33,7 @@ const Navbar = () => {
 
         <form action="">
           <input type="text" placeholder='Search...' name="" id="" />
-          <img src={search} alt="ixon"  width="18" />
+          <img src={search} alt="ixon"  width="18" className='search-icon' />
         </form>
         
         {User === null ?
