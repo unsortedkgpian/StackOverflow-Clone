@@ -10,11 +10,12 @@ import './Navbar.css'
 
 // After log in it have to some pic
 import Avatar from '../../components/Avatar/Avatar'
-import Button from '../../components/Button/Button'
+// import Button from '../../components/Button/Button'
 
 const Navbar = () => {
 
   var User = null;
+  // var User = 123;
 
 
 
@@ -39,8 +40,8 @@ const Navbar = () => {
         {User === null ?
           <Link to='/Auth' className='nav-item nav-links'>Log in</Link> :
           <>
-            <Link to='./'  ><Avatar>A</Avatar></Link>
-            <Button>Log out</Button>
+            <Avatar backgroundColor='#009dff' px="10px" py="7px" borderRadius="50%" color='white' ><Link to='./User' style={{color:'white', textDecoration:'none'}} >A</Link></Avatar>
+            <button  className='nav-item nav-link' >Log out</button>
           </>
       }
 
