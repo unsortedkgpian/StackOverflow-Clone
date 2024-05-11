@@ -11,7 +11,7 @@ const AllRoutes = () => {
   return (
     <Routes>
         {/* <Route exact path = '/' component={Home} /> */}
-        <Route exact path = '/' component={<Home />} />
+        <Route exact path = '/' element={<Home />} />
         {/* <Route path = '/Auth' component={Auth} /> */}
         <Route path = '/Auth' element={<Auth />} />
 
