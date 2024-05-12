@@ -15,6 +15,7 @@
     margin: 0%;
     padding: 15px;
     border: 1px solid #f1e5bc;
+    font-size: 13px;
 }
 .right-sidebar-div-1{
     background-color: #fdf7e2;
@@ -32,7 +33,7 @@
 .right-sidebar-div-1 .right-sidebar-div-2 p{
     padding-left: 10px;
     margin-top: 0%;
-    font-size: 14px ;
+    font-size: 13px ;
 }
 
 .widget-tags{
