@@ -14,7 +14,8 @@ import Avatar from '../../components/Avatar/Avatar'
 
 const Navbar = () => {
 
-  var User = null;
+//   var User = null;
+    var User = JSON.parse(localStorage.getItem('profile'))
   // var User = 123;
 
 
