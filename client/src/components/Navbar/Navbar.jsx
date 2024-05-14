@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 // import logo from 'https://stackoverflow.design/assets/img/logos/so/logo-stackoverflow.png'
 import logo from '../../assets/logo-stackoverflow.svg'
@@ -19,7 +19,7 @@ import { setCurrentUser } from '../../actions/currentUser'
 const Navbar = () => {
 
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     var User = useSelector((state) => (state.currentUserReducer));
     // var User = JSON.parse(localStorage.getItem('Profile'));

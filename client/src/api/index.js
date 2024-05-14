@@ -10,6 +10,8 @@ export const postQuestion = (questionData) => API.post('./questions/Ask', questi
 
 export const getAllQuestions = () => API.get('/questions/get');
 
+export const deleteQuestion = (id) => API.delete(`/questions/delete/${id}`)
+
 
 
 

@@ -1,6 +1,5 @@
 import React , { useState } from 'react'
 import './AskQuestion.css'
-// import {useNavigate} from 'react-router-dom'
 
 import { useNavigate,  } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
@@ -21,9 +20,9 @@ const AskQuestion = () => {
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         // console.log({questionTitle, questionBody, questionTags})
-        dispatch(askQuestion({ questionTitle, questionBody, questionTags, userPosted: User.result.name }, navigate))
+        dispatch(askQuestion({ questionTitle, questionBody, questionTags, userPosted: User.result.name, userId: User?.result?._id }, navigate))
     }
     const handleEnter = (e) => {
         if(e.key === 'Enter'){

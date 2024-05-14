@@ -12,11 +12,12 @@ import DisplayAnswer from './DisplayAnswer'
 // import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { postAnswer } from '../../actions/question'
+import { postAnswer, deleteQuestion  } from '../../actions/question';
 
 import moment from 'moment'
 
 import copy from 'react-copy-to-clipboard'
+// import { deleteQuestion } from '../../api'
 
 const QuestionsDetails = () => {
 
@@ -91,7 +92,7 @@ const QuestionsDetails = () => {
             if(Answer === ''){
                 alert("Enter an answer before submitting");
             } else{
-                dispatch(postAnswer( { id, noOfAnswers: answerLength+1, answerBody: Answer, userAnswered: User.result.name}));
+                dispatch(postAnswer( { id, noOfAnswers: answerLength+1, answerBody: Answer, userAnswered: User.result.name,  userId: User?.result?._id}));
             }
         }
     }
@@ -104,6 +105,12 @@ const QuestionsDetails = () => {
         copy(url+location.pathname)
         alert("Copied url : " +url+location.pathname)
     }
+
+    const handleDelete = () =>  {
+        dispatch(deleteQuestion(id, navigator))
+    }
+
+
 
   return (
     <div className="question-details-page">
@@ -135,7 +142,11 @@ const QuestionsDetails = () => {
                                         <div className="question-actions-user">
                                             <div>
                                                 <button type='button' onClick={handleShare} >Share</button>
-                                                <button type='button' >Delete</button>
+                                                {
+                                                    User?.result?._id === question?.userId && (
+                                                        <button type='button' onClick={handleDelete}  >Delete</button>
+                                                    )
+                                                }
                                             </div>
                                             <div>
                                                 <p>asked {moment(question.askedOn).fromNow()}</p>
