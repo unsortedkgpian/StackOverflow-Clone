@@ -12,11 +12,11 @@ import DisplayAnswer from './DisplayAnswer'
 // import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { postAnswer, deleteQuestion  } from '../../actions/question';
+import { postAnswer, deleteQuestion , voteQuestion } from '../../actions/question';
 
 import moment from 'moment'
 
-import copy from 'react-copy-to-clipboard'
+import copy from 'copy-to-clipboard'
 // import { deleteQuestion } from '../../api'
 
 const QuestionsDetails = () => {
@@ -92,7 +92,7 @@ const QuestionsDetails = () => {
             if(Answer === ''){
                 alert("Enter an answer before submitting");
             } else{
-                dispatch(postAnswer( { id, noOfAnswers: answerLength+1, answerBody: Answer, userAnswered: User.result.name,  userId: User?.result?._id}));
+                dispatch(postAnswer( { id, noOfAnswers: answerLength+1, answerBody: Answer, userAnswered: User.result.name,  userId: User.result._id}));
             }
         }
     }
@@ -102,12 +102,20 @@ const QuestionsDetails = () => {
     const url = "http://localhost:3000"
 
     const handleShare = () => {
-        copy(url+location.pathname)
+        copy(url + location.pathname);
         alert("Copied url : " +url+location.pathname)
     }
 
     const handleDelete = () =>  {
-        dispatch(deleteQuestion(id, navigator))
+        dispatch(deleteQuestion(id, Navigate))
+    }
+
+    const handleUpVote = () => {
+        dispatch(voteQuestion(id, 'upVote', User.result._id))
+    }
+
+    const handleDownVote = () => {
+        dispatch(voteQuestion(id, 'downVote', User.result._id))
     }
 
 
@@ -126,9 +134,9 @@ const QuestionsDetails = () => {
                                 <h1>{question.questionTitle}</h1>
                                 <div className="question-details-container-2">
                                     <div className="question-votes">
-                                        <img src={upvote} alt="" width='18' />
-                                        <p>{question.upVotes - question.downVotes}</p>
-                                        <img src={downvote} alt="" width='18' />
+                                        <img src={upvote} alt="" width='18' onClick={handleUpVote} />
+                                        <p>{question.upVote.length - question.downVote.length}</p>
+                                        <img src={downvote} alt="" width='18' onClick={handleDownVote} />
                                     </div>
                                     <div style={{width: "100%"}}>
                                         <p className="question-body">{question.questionBody}</p>
@@ -144,7 +152,7 @@ const QuestionsDetails = () => {
                                                 <button type='button' onClick={handleShare} >Share</button>
                                                 {
                                                     User?.result?._id === question?.userId && (
-                                                        <button type='button' onClick={handleDelete}  >Delete</button>
+                                                        <button type="button" onClick={handleDelete}>Delete </button>
                                                     )
                                                 }
                                             </div>
@@ -153,7 +161,7 @@ const QuestionsDetails = () => {
                                                 <Link to={`/User/${question.userId}`} className='user-link' style={{color:'#0086d8'}}  >
                                                     <Avatar backgroundColor="orange" px='8px' py='5px'  >{question.userPosted.charAt(0).toUpperCase()}</Avatar>
                                                     <div>
-                                                        {question.userId}
+                                                        {question.userPosted}
                                                     </div>
                                                 </Link>
                                             </div>
@@ -175,7 +183,7 @@ const QuestionsDetails = () => {
                             <section className='post-ans-container'>
                                 <h3>Your Answer</h3>
                                 <form action="" onSubmit={(e) => {handlePostAns(e, question.answer.length)}}>
-                                    <textarea name="" id="" cols='30' rows='10' onChange={e => setAnswer(e.target.value)}  ></textarea> <br />
+                                    <textarea name="" id="" cols='30' rows='10' onChange={(e) => setAnswer(e.target.value)}  ></textarea> <br />
                                     <input type="Submit" className='post-ans-btn' value='Post Your Answer' />
                                 </form>
                                 <p>

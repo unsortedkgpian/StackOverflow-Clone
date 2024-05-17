@@ -15,4 +15,4 @@ const DisplayQuestion = () => {
   )
 }
 
-export default DisplayQuestion
+export default DisplayQuestion;

@@ -10,9 +10,9 @@ import { askQuestion } from '../../actions/question'
 
 const AskQuestion = () => {
 
-    const [questionTitle, setQuestionTitle] = useState('');
-    const [questionBody, setQuestionBody] = useState('');
-    const [questionTags, setQuestionTags] = useState('');
+    const [questionTitle, setQuestionTitle] = useState("");
+    const [questionBody, setQuestionBody] = useState("");
+    const [questionTags, setQuestionTags] = useState("");
 
 
     const dispatch = useDispatch();
@@ -23,6 +23,7 @@ const AskQuestion = () => {
         e.preventDefault();
         // console.log({questionTitle, questionBody, questionTags})
         dispatch(askQuestion({ questionTitle, questionBody, questionTags, userPosted: User.result.name, userId: User?.result?._id }, navigate))
+        console.log( User?.result?._id)
     }
     const handleEnter = (e) => {
         if(e.key === 'Enter'){
